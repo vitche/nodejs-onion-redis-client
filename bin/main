@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+var queueTests = require('../tests/queue');
+var test = {
+    done: function () {
+    },
+    ok: function (check, text) {
+        if (check) {
+            console.log(text);
+        } else {
+            console.error(text);
+        }
+    }
+};
+queueTests.testPublish(test);
+queueTests.testSubscribe(test);

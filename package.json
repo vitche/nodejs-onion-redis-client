@@ -1,0 +1,11 @@
+{
+    "name": "nodejs-onion-redis-client",
+    "version": "0.0.0",
+    "private": true,
+    "main": "main.js",
+    "dependencies": {
+        "nodeunit": "~0.9.1",
+        "socket.io-client": "~1.4.6",
+        "socks-proxy-agent": "~2.0.0"
+    }
+}
