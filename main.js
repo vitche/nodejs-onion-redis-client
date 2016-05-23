@@ -10,6 +10,11 @@ module.exports = function (proxyAddress, namespaceOnionUri) {
             callback();
         });
     };
+    this.disconnect = function () {
+        if (undefined != self.connection) {
+            self.connection.disconnect();
+        }
+    };
     this.publish = function (channel, message) {
         self.connection.emit('publish', {
             channel: channel,
