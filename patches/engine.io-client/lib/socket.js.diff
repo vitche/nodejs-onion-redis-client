@@ -1,0 +1,16 @@
+--- socket.js	2016-05-03 06:50:42.000000000 +0300
++++ socket.patched.js	2016-06-01 14:36:19.093228431 +0300
+@@ -288,7 +288,13 @@
+     if (failed) return;
+ 
+     debug('probe transport "%s" opened', name);
++    if (!transport) {
++      return;
++    }
+     transport.send([{ type: 'ping', data: 'probe' }]);
++    if (!transport) {
++      return;
++    }
+     transport.once('packet', function (msg) {
+       if (failed) return;
+       if ('pong' == msg.type && 'probe' == msg.data) {

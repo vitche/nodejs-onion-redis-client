@@ -3,9 +3,13 @@
     "version": "0.0.0",
     "private": true,
     "main": "main.js",
+    "scripts": {
+        "prepublish": "node ./patch"
+    },
     "dependencies": {
         "nodeunit": "~0.9.1",
         "socket.io-client": "~1.4.6",
-        "socks-proxy-agent": "~2.0.0"
+        "socks-proxy-agent": "~2.0.0",
+        "nodejs-patch": "git+https://github.com/vitche/nodejs-patch.git"
     }
 }

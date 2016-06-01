@@ -2,6 +2,7 @@ var httpAgent = require('socks-proxy-agent');
 var webSocket = require('socket.io-client');
 module.exports = function (proxyAddress, namespaceOnionUri) {
     var self = this;
+    // Connects to the Onion Redis queue
     this.connect = function (callback) {
         self.connection = webSocket.connect(namespaceOnionUri, {
             agent: new httpAgent(proxyAddress)
