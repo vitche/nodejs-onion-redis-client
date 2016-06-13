@@ -1,5 +1,7 @@
 # Node.js Onion Redis Client
 Onion Redis Client is a solution for connecting to Onion Redis servers through TOR.
+Can be used within local network when proxy URI is not specified.
+
 ## Message Queue API
 The following operations are supported:
  - connect - establish a TOR connection and connect to a server instance;
@@ -14,7 +16,7 @@ The following events can be fired for an established connection:
 ## Sample Code
 To publish a message to the given channel:
 ```sh
-var publisher = new onionRedisClient(proxyAddress, namespaceOnionUri);
+var publisher = new onionRedisClient(uri, proxyAddress);
 publisher.connect(function (error) {
     if (undefined != error) {
         console.log(error);
@@ -28,8 +30,8 @@ publisher.connect(function (error) {
 ```
 To subscribe to a given channel and catch a test published message:
 ```sh
-var listener = new onionRedisClient(proxyAddress, namespaceOnionUri);
-var publisher = new onionRedisClient(proxyAddress, namespaceOnionUri);
+var listener = new onionRedisClient(uri, proxyAddress);
+var publisher = new onionRedisClient(uri, proxyAddress);
 listener.connect(function (error) {
     var subscribed = false;
     if (undefined != error) {
