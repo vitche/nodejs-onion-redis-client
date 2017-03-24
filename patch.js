@@ -1,6 +1,6 @@
 var patch = require('nodejs-patch');
 // Patch the "engine.io-client" module
-patch.file('./node_modules/socket.io-client/node_modules/engine.io-client/lib/socket.js', './patches/engine.io-client/lib/socket.js.diff', function (error, result) {
+patch.file('./node_modules/engine.io-client/lib/socket.js', './patches/engine.io-client/lib/socket.js.diff', function (error, result) {
     if (error) {
         throw error;
     }
