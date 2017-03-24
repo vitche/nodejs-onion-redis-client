@@ -1,7 +1,13 @@
 var patch = require('nodejs-patch');
 var cwd = process.cwd();
+var relativePath = '/engine.io-client/lib/socket.js';
+var path = cwd + '/node_modules' + relativePath;
+var fs = require('fs');
+if (!fs.existsSync(path)) {
+    path = '..' + relativePath;
+}
 // Patch the "engine.io-client" module
-patch.file(cwd + '/node_modules/engine.io-client/lib/socket.js', './patches/engine.io-client/lib/socket.js.diff', function (error, result) {
+patch.file(path, './patches/engine.io-client/lib/socket.js.diff', function (error, result) {
     if (error) {
         throw error;
     }
