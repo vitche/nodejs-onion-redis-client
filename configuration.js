@@ -1,3 +1,7 @@
 module.exports = {
-    namespace: 'TODO:'
+	namespace: 'TODO:',
+	transport: 'grpc',
+	proxy: {
+		address: undefined
+	}
 };

@@ -7,9 +7,10 @@
         "postinstall": "node ./patch"
     },
     "dependencies": {
+        "nodejs-grpc-socketio-proxy": "git+https://github.com/vitche/nodejs-grpc-socketio-proxy.git",
+        "nodejs-patch": "git+https://github.com/vitche/nodejs-patch.git",
         "nodeunit": "~0.9.1",
         "socket.io-client": "~1.4.6",
-        "socks-proxy-agent": "~2.0.0",
-        "nodejs-patch": "git+https://github.com/vitche/nodejs-patch.git"
+        "socks-proxy-agent": "~2.0.0"
     }
 }

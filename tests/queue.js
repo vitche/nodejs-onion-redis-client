@@ -1,12 +1,10 @@
-var configuration = require('../configuration');
-var onionRedisClient = require("..");
-var proxyAddress = 'socks://127.0.0.1:9050';
-var namespaceOnionUri = configuration.namespace;
 module.exports = {
 	testPublish: function (test) {
-		var publisher = new onionRedisClient(namespaceOnionUri, proxyAddress);
+		var configuration = require('../configuration');
+		var OnionRedisClient = require("..");
+		var publisher = new OnionRedisClient(configuration.namespace, configuration.proxy.address, configuration.transport);
 		publisher.connect(function (error) {
-			if (undefined != error) {
+			if (undefined !== error) {
 				console.log(error);
 				return;
 			}
@@ -17,11 +15,13 @@ module.exports = {
 		});
 	},
 	testSubscribe: function (test) {
-		var listener = new onionRedisClient(namespaceOnionUri, proxyAddress);
-		var publisher = new onionRedisClient(namespaceOnionUri, proxyAddress);
+		var configuration = require('../configuration');
+		var OnionRedisClient = require("..");
+		var listener = new OnionRedisClient(configuration.namespace, configuration.proxy.address, configuration.transport);
+		var publisher = new OnionRedisClient(configuration.namespace, configuration.proxy.address, configuration.transport);
 		listener.connect(function (error) {
 			var subscribed = false;
-			if (undefined != error) {
+			if (undefined !== error) {
 				console.log(error);
 				return;
 			}
@@ -34,7 +34,7 @@ module.exports = {
 			});
 			listener.subscribe('test');
 			publisher.connect(function (error) {
-				if (undefined != error) {
+				if (undefined !== error) {
 					console.log(error);
 					return;
 				}
