@@ -1,15 +1,33 @@
 #!/usr/bin/env node
 var queueTests = require('../tests/queue');
 var test = {
-    done: function () {
-    },
-    ok: function (check, text) {
-        if (check) {
-            console.log(text);
-        } else {
-            console.error(text);
-        }
-    }
+	tests: [],
+	done: function () {
+		var self = this;
+		self.tests = self.tests.filter(function (element) {
+			return element != self.currentProcedure;
+		});
+		this.currentProcedure = undefined;
+	},
+	ok: function (check, text) {
+		if (check) {
+			console.log('Success: ' + text);
+		} else {
+			console.error('Error: ' + text);
+		}
+	},
+	execute: function (procedure) {
+		var self = this;
+		self.tests[self.tests.length] = procedure;
+		var interval = setInterval(function () {
+			if (self.currentProcedure == undefined && self.tests[0] === procedure) {
+				self.currentProcedure = procedure;
+				self.currentProcedure(self);
+				clearInterval(interval);
+			}
+		}, 500);
+	}
 };
-queueTests.testPublish(test);
-queueTests.testSubscribe(test);
+test.execute(queueTests.testPublish);
+test.execute(queueTests.testSubscribe);
+test.execute(queueTests.testDisconnect);
