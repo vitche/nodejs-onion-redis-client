@@ -28,6 +28,9 @@ module.exports = function (serverAddress, proxyAddress) {
 					.start();
 				// Change server address to the tunnel
 				serverAddress = localAddress + ':' + localPort;
+			} else {
+				// Remove the protocol prefix
+				serverAddress = serverAddress.replace('grpc://', '');
 			}
 			socket = grpcSocket.ClientSocket;
 		} else if ('socketio' === transport) {
